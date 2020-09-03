@@ -1,0 +1,31 @@
+<div class="topbar">
+	<p class="pl-5 py-2 pr-3 title"> TRANSCRIPT ANALYZER </p>
+	<span class="title-img pt-3 pr-5"></span>
+</div>
+<div class="d-flex flex-row navRow">
+	<mat-form-field class="pl-5">
+		<mat-label><mat-icon>supervised_user_circle</mat-icon> Agent</mat-label>
+		<mat-select [(ngModel)]="selectedAgent">
+			<mat-option *ngFor="let agent of agents" [value]="agent.agent_id">{{agent.full_name}}</mat-option>
+		</mat-select>
+	</mat-form-field>
+	<mat-form-field class="px-2">
+		<mat-label><mat-icon>filter_list</mat-icon> All</mat-label>
+		<mat-select [(ngModel)]="selectedCalltype">
+			<mat-option>All</mat-option>
+			<mat-option *ngFor="let calltype of calltypes" [value]="calltype.calltype_id">{{calltype.name}}</mat-option>
+		</mat-select>
+	</mat-form-field>
+	<mat-form-field>
+		<mat-label><mat-icon>call</mat-icon> Call</mat-label>
+		<mat-select (click)="selectCalls()">
+			<mat-option *ngFor="let call of matchCalls" [value]="call.call_id">{{call.call_start_time.split(' ')[0] | date}} - {{call.customer[0].full_name}}</mat-option>
+		</mat-select>
+	</mat-form-field>
+</div>
+<div class="centreImg"></div>
+<div class="mt-5 textContainer">
+	<p class="text-center bodyTextHead">Selection Pending</p>
+	<p class="text-center bodyText">Select a call from top menu and a transcript <br>
+		analysis will be shown here </p>
+</div>
